@@ -13,7 +13,6 @@ const { BASE_DIR, DEV_DIR, DIST_DIR, PUBLIC_DIR, ENTRY_POINT } = paths;
 const { common, development, production } = plugins;
 
 module.exports = (env) => {
-
   return {
     cache: IS_DEV,
     watch: IS_WATCH,
