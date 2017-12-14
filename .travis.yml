@@ -1,9 +1,18 @@
 language: node_js
-node_js:
-  - "8"
-
+cache: false
+before_install:
+  - npm install -g yarn --verbose
 before_script:
-- npm install --production --verbose
-
+  - yarn --production
 script:
-- npm run build:prod
+  - npm run build:dev
+  - npm run build:prod
+run:
+  name: update yarn
+  command: |
+    # remove default yarn
+    sudo rm -rf $(dirname $(which yarn))/yarn*
+    # download latest
+    rm -rf ~/.yarn
+    curl -o- -L https://yarnpkg.com/install.sh | bash
+    echo 'export PATH="${PATH}:${HOME}/.yarn/bin"' >> $BASH_ENV
